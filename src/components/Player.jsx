@@ -4,6 +4,12 @@ export default function Player({ name, symbol }) {
   const handleEditClick = () => {
     setIsEditing(true);
   };
+  const handleKeyDown = (key) => {
+    console.log(key);
+    if (key.code === "Enter") {
+      setIsEditing(false);
+    }
+  };
   const [isEditing, setIsEditing] = useState(false);
   console.log(isEditing);
   return (
@@ -11,12 +17,7 @@ export default function Player({ name, symbol }) {
       <span className="player">
         {isEditing ? (
           <input
-            onKeyDown={(key) => {
-              console.log(key);
-              if (key.code === "Enter") {
-                setIsEditing(false);
-              }
-            }}
+            onKeyDown={handleKeyDown}
           ></input>
         ) : (
           <span className="player-name">{name}</span>
